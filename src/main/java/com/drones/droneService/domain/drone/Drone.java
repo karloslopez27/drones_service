@@ -2,30 +2,47 @@ package com.drones.droneService.domain.drone;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Size;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Drone {
-    //(100 characters max);
-    @Max(value = 100, message = "[serialNumber] {drone.validations.size} {this.value}")
+
+    @Valid
+    @NotNull(message = "[id] {drone.validations.nullBlank}")
+    private Integer id;
+
+    @Valid
+    @NotBlank(message = "[serialNumber] {drone.validations.nullBlank}")
+    @NotNull(message = "[serialNumber] {drone.validations.nullBlank}")
+    @Size(min = 1, max = 100, message = "[serialNumber] {drone.validations.size} (1-100)")
     private String serialNumber;
 
-    //(Lightweight, Middleweight, Cruiserweight, Heavyweight);
+    @Valid
+    @NotBlank(message = "[model] {drone.validations.nullBlank}")
+    @NotNull(message = "[model] {drone.validations.nullBlank}")
     private String model;
 
-    //(500gr max);
-    @Max(value = 50, message = "[weightLimit] {drone.validations.size} {this.value}")
-    private int weightLimit;
+    @Valid
+    @NotNull(message = "[weightLimit] {drone.validations.nullBlank}")
+    @Min(value = 1, message = "[weightLimit] {drone.validations.size} (1)")
+    @Max(value = 500, message = "[weightLimit] {drone.validations.size} (500)")
+    private Integer weightLimit;
 
-    //(percentage)
-    @Size(min = 0, max = 100, message = "[weightLimit] {drone.validations.size} {this.value}")
-    private int batteryCapacity;
+    @Valid
+    @NotNull(message = "[batteryCapacity] {drone.validations.nullBlank}")
+    @Min(value = 0, message = "[weightLimit] {drone.validations.size} (0)")
+    @Max(value = 100, message = "[weightLimit] {drone.validations.size} (100)")
+    private Integer batteryCapacity;
 
-    //(IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING).
+    @Valid
+    @NotBlank(message = "[state] {drone.validations.nullBlank}")
+    @NotNull(message = "[state] {drone.validations.nullBlank}")
     private String state;
 }

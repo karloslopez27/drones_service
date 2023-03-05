@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface IDroneService {
 
-    void registerDrone(Drone drone);
+    Drone registerDrone(Drone drone);
 
 }
