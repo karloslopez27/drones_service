@@ -1,5 +1,8 @@
 package com.drones.droneService.domain.drone;
 
+import com.drones.droneService.domain.enumerator.ModelEnum;
+import com.drones.droneService.domain.enumerator.StateEnum;
+import com.drones.droneService.domain.enumerator.ValueOfEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +30,7 @@ public class Drone {
     @Valid
     @NotBlank(message = "[model] {drone.validations.nullBlank}")
     @NotNull(message = "[model] {drone.validations.nullBlank}")
+    @ValueOfEnum(enumClass = ModelEnum.class, message = "{drone.validations.enum}")
     private String model;
 
     @Valid
@@ -44,5 +48,6 @@ public class Drone {
     @Valid
     @NotBlank(message = "[state] {drone.validations.nullBlank}")
     @NotNull(message = "[state] {drone.validations.nullBlank}")
+    @ValueOfEnum(enumClass = StateEnum.class, message = "{drone.validations.enum}")
     private String state;
 }
