@@ -3,6 +3,7 @@ package com.drones.droneService.domain.mapper;
 import com.drones.droneService.domain.drone.Drone;
 import com.drones.droneService.model.DroneEntity;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.NullValueMappingStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
@@ -11,7 +12,9 @@ import org.mapstruct.factory.Mappers;
 public interface DroneMapper {
     DroneMapper INSTANCE = Mappers.getMapper(DroneMapper.class);
 
+    @Mapping(target = "weightLoad", defaultValue = "0")
     DroneEntity convertDrone(Drone drone);
 
     Drone convertDroneEntity(DroneEntity droneEntity);
+
 }

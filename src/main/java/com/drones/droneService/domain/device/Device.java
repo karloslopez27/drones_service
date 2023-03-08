@@ -1,4 +1,4 @@
-package com.drones.droneService.domain.medication;
+package com.drones.droneService.domain.device;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import javax.validation.constraints.Pattern;
 @NoArgsConstructor
 public class Device {
 
-    private String id;
+    private Integer id;
 
     @Pattern(regexp = "^[a-zA-Z0-9_-]+$")
     private String name;
@@ -25,4 +25,5 @@ public class Device {
 
     //image URL maybe stored in some cloud blob storage
     private String image;
+
 }

@@ -3,6 +3,7 @@ package com.drones.droneService.domain.drone;
 import com.drones.droneService.domain.enumerator.ModelEnum;
 import com.drones.droneService.domain.enumerator.StateEnum;
 import com.drones.droneService.domain.enumerator.ValueOfEnum;
+import com.drones.droneService.domain.device.Device;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,8 @@ import lombok.Setter;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -39,6 +42,8 @@ public class Drone {
     @Max(value = 500, message = "[weightLimit] {drone.validations.size} (500)")
     private Integer weightLimit;
 
+    private Integer weightLoad;
+
     @Valid
     @NotNull(message = "[batteryCapacity] {drone.validations.nullBlank}")
     @Min(value = 0, message = "[weightLimit] {drone.validations.size} (0)")
@@ -50,4 +55,6 @@ public class Drone {
     @NotNull(message = "[state] {drone.validations.nullBlank}")
     @ValueOfEnum(enumClass = StateEnum.class, message = "{drone.validations.enum}")
     private String state;
+
+    private List<Device> loadedDevices;
 }

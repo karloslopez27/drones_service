@@ -5,7 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,10 +17,10 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "medication")
-public class MedicationEntity {
+public class DeviceEntity {
 
     @Id
-    private String id;
+    private Integer id;
 
     private String name;
 
@@ -25,5 +29,8 @@ public class MedicationEntity {
     private String code;
 
     private String image;
+
+    @ManyToMany(mappedBy = "loadedDevices")
+    private List<DroneEntity> carryDrones;
 
 }
