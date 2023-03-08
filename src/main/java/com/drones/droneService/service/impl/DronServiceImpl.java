@@ -4,6 +4,7 @@ import com.drones.droneService.domain.drone.Drone;
 import com.drones.droneService.domain.load.LoadDrone;
 import com.drones.droneService.domain.mapper.DroneMapper;
 import com.drones.droneService.domain.utils.DroneUtils;
+import com.drones.droneService.exception.DispatchDroneException;
 import com.drones.droneService.model.DeviceEntity;
 import com.drones.droneService.model.DroneEntity;
 import com.drones.droneService.repository.IDeviceRespository;
@@ -39,26 +40,26 @@ public class DronServiceImpl implements IDroneService {
     }
 
     @Override
-    public Drone loadDrone(LoadDrone loadDrone) throws Exception {
+    public Drone loadDrone(LoadDrone loadDrone) throws DispatchDroneException {
         Optional<DroneEntity> droneOptional = droneRepository.findById(loadDrone.getDroneId());
-        Optional<DeviceEntity> medicationOptional = deviceRespository.findById(loadDrone.getDeviceId());
+        Optional<DeviceEntity> deviceOptional = deviceRespository.findById(loadDrone.getDeviceId());
         if (droneOptional.isPresent()) {
             DroneEntity droneEntity = droneOptional.get();
-            if (medicationOptional.isPresent()) {
-                DeviceEntity medicationEntity = medicationOptional.get();
+            if (deviceOptional.isPresent()) {
+                DeviceEntity medicationEntity = deviceOptional.get();
                 if (DroneUtils.validateLoadCapacity(droneEntity, medicationEntity)) {
                     droneEntity.getLoadedDevices().add(medicationEntity);
                     DroneEntity savedDrone = droneRepository.save(droneEntity);
                     Drone drone = DroneMapper.INSTANCE.convertDroneEntity(savedDrone);
                     return drone;
                 } else {
-                    throw new Exception("Cannot load. Drone capacity exceeded.");
+                    throw new DispatchDroneException("Cannot load this device. Drone capacity exceeded.");
                 }
             } else {
-                throw new Exception("Cannot load. Drone capacity exceeded.");
+                throw new DispatchDroneException("Cannot load this device. Device not found.");
             }
         } else {
-            throw new Exception("Cannot load, drone not found.");
+            throw new DispatchDroneException("Cannot load the drone. Drone not found.");
         }
     }
 }

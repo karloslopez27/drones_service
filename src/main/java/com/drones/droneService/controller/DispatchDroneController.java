@@ -1,15 +1,13 @@
 package com.drones.droneService.controller;
 
+import com.drones.droneService.exception.DispatchDroneException;
 import com.drones.droneService.domain.drone.Drone;
 import com.drones.droneService.domain.load.LoadDrone;
 import com.drones.droneService.service.IDroneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -27,12 +25,9 @@ public class DispatchDroneController {
     }
 
     @PostMapping("/drone/load")
-    public ResponseEntity<Drone> loadDrone(@Valid @RequestBody LoadDrone loadDrone) {
-        try {
+    public ResponseEntity<Drone> loadDrone(@Valid @RequestBody LoadDrone loadDrone) throws DispatchDroneException {
             Drone savedDrone = droneService.loadDrone(loadDrone);
             return ResponseEntity.status(HttpStatus.OK).body(savedDrone);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
+
     }
 }
