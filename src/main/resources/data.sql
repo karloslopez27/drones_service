@@ -10,11 +10,11 @@ INSERT INTO DRONE (ID, BATTERY_CAPACITY, MODEL,	SERIAL_NUMBER, STATE, WEIGHT_LIM
 INSERT INTO DRONE (ID, BATTERY_CAPACITY, MODEL,	SERIAL_NUMBER, STATE, WEIGHT_LIMIT, WEIGHT_LOAD) VALUES (1009, 20, 'Heavyweight', '123456789D', 'RETURNING', 500, 0);
 
 --Medication
-INSERT INTO MEDICATION (ID, CODE, IMAGE, NAME, WEIGHT) VALUES (6001, 'MED01', 'https://mydrones.blob.core.windows.net/devices/medication/Acetaminophen.jpg', 'Acetaminophen', 60);
-INSERT INTO MEDICATION (ID, CODE, IMAGE, NAME, WEIGHT) VALUES (6002, 'MED02', 'https://mydrones.blob.core.windows.net/devices/medication/Amoxicillin.jpg', 'Amoxicillin', 50);
-INSERT INTO MEDICATION (ID, CODE, IMAGE, NAME, WEIGHT) VALUES (6003, 'MED03', 'https://mydrones.blob.core.windows.net/devices/medication/Ciprofloxacin.jpg', 'Ciprofloxacin', 30);
-INSERT INTO MEDICATION (ID, CODE, IMAGE, NAME, WEIGHT) VALUES (6004, 'MED04', 'https://mydrones.blob.core.windows.net/devices/medication/Loratadine.jpg', 'Loratadine', 20);
-INSERT INTO MEDICATION (ID, CODE, IMAGE, NAME, WEIGHT) VALUES (6005, 'MED05', 'https://mydrones.blob.core.windows.net/devices/medication/Tramadol.jpg', 'Tramadol', 70);
+INSERT INTO DEVICE (ID, CODE, IMAGE, NAME, WEIGHT) VALUES (6001, 'MED01', 'https://mydrones.blob.core.windows.net/devices/medication/Acetaminophen.jpg', 'Acetaminophen', 60);
+INSERT INTO DEVICE (ID, CODE, IMAGE, NAME, WEIGHT) VALUES (6002, 'MED02', 'https://mydrones.blob.core.windows.net/devices/medication/Amoxicillin.jpg', 'Amoxicillin', 50);
+INSERT INTO DEVICE (ID, CODE, IMAGE, NAME, WEIGHT) VALUES (6003, 'MED03', 'https://mydrones.blob.core.windows.net/devices/medication/Ciprofloxacin.jpg', 'Ciprofloxacin', 30);
+INSERT INTO DEVICE (ID, CODE, IMAGE, NAME, WEIGHT) VALUES (6004, 'MED04', 'https://mydrones.blob.core.windows.net/devices/medication/Loratadine.jpg', 'Loratadine', 20);
+INSERT INTO DEVICE (ID, CODE, IMAGE, NAME, WEIGHT) VALUES (6005, 'MED05', 'https://mydrones.blob.core.windows.net/devices/medication/Tramadol.jpg', 'Tramadol', 70);
 
 --Drone_Device
 INSERT INTO DRONE_DEVICE (DRONE_ID, DEVICE_ID) VALUES (1001, 6001);

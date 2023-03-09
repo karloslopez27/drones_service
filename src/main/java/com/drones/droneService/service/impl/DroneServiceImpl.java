@@ -57,7 +57,7 @@ public class DroneServiceImpl implements IDroneService {
                     Drone drone = DroneMapper.INSTANCE.convertDroneEntity(savedDrone);
                     return drone;
                 } else {
-                    throw new DispatchDroneException("Cannot load this device. Drone capacity exceeded or invalid drone state.");
+                    throw new DispatchDroneException("Cannot load this device. Drone capacity exceeded, invalid drone state or battery capacity is below 25%");
                 }
             } else {
                 throw new DispatchDroneException("Cannot load this device. Device not found.");

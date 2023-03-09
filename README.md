@@ -5,7 +5,7 @@
 * Gradle project
 * SpringBoot v. 2.7.9
 * Project default port: 8080
-* H2 in-memory database (http://localhost:8080/h2-console/). Access with default login information.
+* H2 in-memory database (http://localhost:8080/h2-console/). Access with default login information. User: sa, password: empty. Database name: dronesdb.
 * src/main/resources/data.sql file contains and load initial information on startup.
 
 ## Assumptions:

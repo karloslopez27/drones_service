@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "medication")
+@Table(name = "device")
 public class DeviceEntity {
 
     @Id
