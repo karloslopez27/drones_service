@@ -1,5 +1,6 @@
 package com.drones.droneService.service.impl;
 
+import com.drones.droneService.domain.checkbattery.BatteryInfo;
 import com.drones.droneService.domain.device.Device;
 import com.drones.droneService.domain.drone.Drone;
 import com.drones.droneService.domain.load.LoadDrone;
@@ -14,11 +15,12 @@ import com.drones.droneService.service.IDroneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DronServiceImpl implements IDroneService {
+public class DroneServiceImpl implements IDroneService {
 
     @Autowired
     IDroneRepository droneRepository;
@@ -93,5 +95,20 @@ public class DronServiceImpl implements IDroneService {
         } else {
             throw new DispatchDroneException("Drone not found.");
         }
+    }
+
+    public List<BatteryInfo> checkDronesBattery() {
+        Optional<List<DroneEntity>> optionalAllDrones = Optional.of(droneRepository.findAll());
+        List<BatteryInfo> batteryInfoList = new ArrayList<>();
+        if (optionalAllDrones.isPresent()) {
+            for (DroneEntity drone : optionalAllDrones.get()) {
+                BatteryInfo batteryInfo = new BatteryInfo();
+                batteryInfo.setDroneId(drone.getId());
+                batteryInfo.setDroneBattery(drone.getBatteryCapacity());
+                batteryInfoList.add(batteryInfo);
+            }
+        }
+
+        return batteryInfoList;
     }
 }
